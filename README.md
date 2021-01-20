@@ -31,4 +31,4 @@ To run SpringBootDataJpaEntity application, after building, unzip the assembly a
     5-docker run -d -p 8090:8090 --name time-sheet time-sheet
 ## wrapper 
 
-A wrapper for the [Api Documentation](http://localhost:8082/swagger-ui.html#/) available in http://localhost:8082/swagger-ui.html#/
+A wrapper for the [Api Documentation](http://localhost:8090/SpringMVC/servlet/swagger-ui.html#/) available in http://localhost:8090/SpringMVC/servlet/swagger-ui.html#/
