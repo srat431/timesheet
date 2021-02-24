@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +32,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	ContratRepository contratRepoistory;
 	@Autowired
 	TimesheetRepository timesheetRepository;
-
+	private static final Logger l = LogManager.getLogger(EmployeServiceImpl.class);
 	@Override
 	public Employe authenticate(String login, String password) {
 		return employeRepository.getEmployeByEmailAndPassword(login, password);
@@ -121,12 +123,18 @@ public class EmployeServiceImpl implements IEmployeService {
 	}
 
 	public int getNombreEmployeJPQL() {
+		l.info("Nombre des employees est :"+employeRepository.countemp());
 		return employeRepository.countemp();
 	}
 
 	public List<String> getAllEmployeNamesJPQL() {
-		return employeRepository.employeNames();
-
+		l.info("Debut des noms des employees : "); 
+		List<String> users = (List<String>)  employeRepository.employeNames(); 
+		for (String user : users) {
+			l.debug("user +++ : " + user);
+		}
+		l.info("Fin des noms des employees."); 
+		return users;
 	}
 
 	public List<Employe> getAllEmployeByEntreprise(Entreprise entreprise) {
